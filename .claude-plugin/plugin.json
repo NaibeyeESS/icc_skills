@@ -1,0 +1,22 @@
+{
+  "name": "icc",
+  "description": "Industries Culturelles et Créatives — agents et skills en français pour aider les promoteurs de projets ICC (musique, cinéma, arts visuels, mode, édition, jeux vidéo, spectacle vivant, artisanat, patrimoine, médias) à trouver des financements et à mettre en œuvre leur projet. Conçu pour l'Afrique francophone, adaptable ailleurs.",
+  "version": "1.0.0",
+  "author": {
+    "name": "ICC Skills",
+    "email": "dthekplus@gmail.com"
+  },
+  "keywords": [
+    "industries culturelles",
+    "financement",
+    "appel à projets",
+    "subvention",
+    "budget",
+    "note conceptuelle",
+    "Afrique francophone",
+    "culture",
+    "cinéma",
+    "musique",
+    "mode"
+  ]
+}
