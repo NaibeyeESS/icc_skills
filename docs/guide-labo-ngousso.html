@@ -1,0 +1,329 @@
+<title>Guide icc du Labo Ngousso</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+/* Mise en page : colonne de lecture unique, pensée pour un petit écran et une personne qui suit les étapes une à une. */
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --ink: #171c33;
+  --muted: #535a75;
+  --line: #d5d9e8;
+  --indigo: #27327a;
+  --indigo-soft: #e4e7f6;
+  --ochre: #8f5a00;
+  --ochre-soft: #fbefd5;
+  --code-bg: #171c33;
+  --code-ink: #f3f4fb;
+  --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", Verdana, system-ui, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11142a; --surface: #1a1e3a; --ink: #eceefa; --muted: #aab0cc; --line: #33395f;
+    --indigo: #aeb8f5; --indigo-soft: #262c56; --ochre: #f1c26b; --ochre-soft: #3a2f17;
+    --code-bg: #0b0d1e; --code-ink: #eceefa; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11142a; --surface: #1a1e3a; --ink: #eceefa; --muted: #aab0cc; --line: #33395f;
+  --indigo: #aeb8f5; --indigo-soft: #262c56; --ochre: #f1c26b; --ochre-soft: #3a2f17;
+  --code-bg: #0b0d1e; --code-ink: #eceefa; color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 4rem;
+}
+.page { max-width: 44rem; margin-inline: auto; display: grid; gap: 3rem; }
+.page > * { min-width: 0; }
+header { padding-block: 3rem 0; display: grid; gap: 1rem; }
+.eyebrow { color: var(--ochre); font-weight: 700; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; margin: 0; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.3rem, 8vw, 3.4rem); font-weight: 800; color: var(--indigo); }
+h2 { font-size: 1.65rem; font-weight: 800; color: var(--indigo); }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+.lead { font-size: 1.2rem; }
+section { display: grid; gap: 1rem; scroll-margin-top: 1rem; }
+section > * { min-width: 0; }
+ul, ol { margin: 0; padding-left: 1.3rem; display: grid; gap: .4rem; }
+a { color: var(--indigo); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--ochre); outline-offset: 2px; }
+nav.sommaire { border-block: 1px solid var(--line); padding-block: 1rem; }
+nav.sommaire ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; }
+code { font-family: var(--mono); font-size: .92em; background: var(--indigo-soft); padding: .08em .3em; border-radius: 4px; overflow-wrap: anywhere; }
+.cmd { background: var(--code-bg); color: var(--code-ink); border-radius: 8px; display: flex; gap: .6rem; align-items: flex-start; padding: .7rem .7rem .7rem 1rem; }
+.cmd pre { margin: 0; flex: 1; min-width: 0; overflow-x: auto; font-family: var(--mono); font-size: .92rem; line-height: 1.5; }
+.cmd code { background: none; padding: 0; color: inherit; overflow-wrap: normal; }
+.copy { flex: none; font: inherit; font-size: .82rem; font-weight: 700; color: var(--code-ink); background: none; border: 1px solid currentColor; border-radius: 6px; padding: .15rem .55rem; cursor: pointer; }
+.etapes { list-style: none; padding: 0; counter-reset: etape; gap: 1.6rem; }
+.etapes > li { counter-increment: etape; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); column-gap: .8rem; row-gap: .5rem; }
+.etapes > li::before { content: counter(etape); grid-row: 1 / span 4; width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center; background: var(--indigo); color: var(--bg); font-family: var(--display); font-weight: 800; }
+.etapes > li > * { grid-column: 2; min-width: 0; }
+.note { background: var(--ochre-soft); padding: .9rem 1rem; border-radius: 8px; }
+.deux { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.2rem; }
+.deux > div { display: grid; gap: .5rem; align-content: start; min-width: 0; }
+.tableau { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .98rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem .55rem 0; border-bottom: 1px solid var(--line); }
+th { font-size: .85rem; color: var(--muted); }
+td code { white-space: nowrap; }
+.dialogue { display: grid; gap: .7rem; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1rem; }
+.qui { font-weight: 700; color: var(--indigo); display: block; font-size: .85rem; }
+dl { margin: 0; display: grid; gap: .8rem; }
+dt { font-weight: 700; }
+dd { margin: 0; color: var(--muted); }
+.arbre { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1rem; overflow-x: auto; font-family: var(--mono); font-size: .9rem; line-height: 1.6; margin: 0; }
+footer { color: var(--muted); font-size: .92rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+</style>
+
+<div class="page">
+<header>
+  <p class="eyebrow">Pour les participantes du Labo Ngousso</p>
+  <h1>Votre guide pour bien démarrer avec icc</h1>
+  <p class="lead">icc est un assistant pour les projets culturels et créatifs. Il vous aide à chercher des financements, à préparer vos dossiers et à organiser votre projet. Vous lui écrivez en français, comme dans une conversation.</p>
+  <p>Aucune expérience n'est nécessaire. Suivez ce guide dans l'ordre : votre premier démarrage prend quelques minutes.</p>
+</header>
+
+<nav class="sommaire" aria-label="Sommaire">
+  <ul>
+    <li><a href="#role">Ce qu'icc fait</a></li>
+    <li><a href="#avant">Ce qu'il vous faut</a></li>
+    <li><a href="#demarrer">Premier démarrage</a></li>
+    <li><a href="#reprendre">Reprendre</a></li>
+    <li><a href="#parcours">Le parcours</a></li>
+    <li><a href="#commandes">Les commandes</a></li>
+    <li><a href="#fichiers">Vos fichiers</a></li>
+    <li><a href="#regles">Les bons réflexes</a></li>
+    <li><a href="#problemes">En cas de problème</a></li>
+    <li><a href="#mots">Les mots à connaître</a></li>
+  </ul>
+</nav>
+
+<section id="role">
+  <h2>Ce qu'icc fait pour vous</h2>
+  <p>icc convient à la musique, au cinéma, aux arts visuels, à la mode, à l'édition, au jeu vidéo, au spectacle, à l'artisanat d'art, au patrimoine et aux médias.</p>
+  <div class="deux">
+    <div>
+      <h3>Il peut</h3>
+      <ul>
+        <li>poser les bonnes questions sur votre projet ;</li>
+        <li>repérer des financeurs possibles ;</li>
+        <li>analyser un appel à projets et dire s'il vaut la peine d'y répondre ;</li>
+        <li>préparer votre budget ;</li>
+        <li>rédiger votre dossier, vos lettres et votre présentation ;</li>
+        <li>planifier le projet une fois financé.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Il ne peut pas</h3>
+      <ul>
+        <li>garantir un financement ;</li>
+        <li>déposer un dossier ou signer à votre place ;</li>
+        <li>remplacer un comptable, un avocat ou un notaire ;</li>
+        <li>inventer ce qu'il ne sait pas : il vous demande de le vérifier.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="avant">
+  <h2>Ce qu'il vous faut</h2>
+  <ul>
+    <li><strong>Un ordinateur et une connexion internet.</strong> Il faut être connectée pour échanger avec icc. Vos fichiers, eux, restent sur votre ordinateur.</li>
+    <li><strong>Claude Code installé, avec un compte actif.</strong> C'est le programme qui fait fonctionner icc. L'installation est décrite sur <a href="https://claude.com/claude-code">claude.com/claude-code</a>.</li>
+    <li><strong>Le dossier <code>icc</code> sur votre ordinateur.</strong> L'équipe du Labo Ngousso vous indique comment le récupérer. Retenez l'endroit où vous le rangez.</li>
+    <li><strong>Vos documents, si vous en avez.</strong> Synopsis, photos, CV, devis ou texte d'un appel à projets. Si vous n'avez rien, vous pouvez quand même commencer.</li>
+  </ul>
+</section>
+
+<section id="demarrer">
+  <h2>Premier démarrage</h2>
+  <p>Le terminal est une fenêtre où l'on écrit des commandes. Sur Mac, ouvrez l'application Terminal. Sur Windows, ouvrez PowerShell. Tapez chaque commande, puis appuyez sur Entrée.</p>
+  <ol class="etapes">
+    <li>
+      <h3>Créez le dossier de votre projet</h3>
+      <p>Il contiendra tout votre travail. Prévoyez un dossier par projet.</p>
+      <div class="cmd"><pre><code>mkdir mon-projet
+cd mon-projet</code></pre></div>
+    </li>
+    <li>
+      <h3>Lancez Claude Code avec icc</h3>
+      <p>Remplacez <code>~/icc</code> par l'emplacement de votre dossier <code>icc</code>. Refaites cette commande à chaque nouvelle séance.</p>
+      <div class="cmd"><pre><code>claude --plugin-dir ~/icc</code></pre></div>
+    </li>
+    <li>
+      <h3>Présentez votre projet</h3>
+      <p>Tapez <code>/icc:demarrer</code>, puis décrivez votre projet en une ou deux phrases.</p>
+      <div class="cmd"><pre><code>/icc:demarrer Je prépare une exposition de photos sur mon quartier et je cherche un financement.</code></pre></div>
+    </li>
+    <li>
+      <h3>Répondez aux questions</h3>
+      <p>icc pose quelques questions à la fois. Répondez avec vos mots. Si vous ne savez pas, écrivez « je ne sais pas » : il en tiendra compte.</p>
+    </li>
+    <li>
+      <h3>Autorisez l'écriture de vos fichiers</h3>
+      <p>Si une question vous demande d'autoriser la création d'un fichier dans <code>projet/</code>, acceptez. Sans cela, icc ne peut pas enregistrer votre travail.</p>
+    </li>
+  </ol>
+  <div class="dialogue" aria-label="Exemple de premier échange">
+    <p><span class="qui">Exemple fictif : vous</span>/icc:demarrer Je suis réalisatrice et je cherche 25 000 euros pour un documentaire. Je n'ai pas de structure.</p>
+    <p><span class="qui">icc répond dans cet esprit</span>Ai-je bien compris votre projet ? Avez-vous une date limite, par exemple un appel à projets ou une date de tournage ? Ne créez rien et ne payez rien pour l'instant : nous verrons d'abord ce qu'il vous faut vraiment.</p>
+  </div>
+  <p class="note"><strong>Soyez patiente.</strong> Une étape peut prendre plusieurs minutes, surtout quand icc rédige un document. N'envoyez pas votre demande une seconde fois.</p>
+</section>
+
+<section id="reprendre">
+  <h2>Reprendre après une pause ou une coupure</h2>
+  <p>Internet a coupé, l'ordinateur s'est éteint, ou vous revenez une semaine plus tard ? Votre travail n'est pas perdu. icc note où vous en êtes dans le fichier <code>projet/ETAT.md</code>.</p>
+  <ol>
+    <li>Retournez dans le dossier de votre projet avec <code>cd mon-projet</code>.</li>
+    <li>Relancez <code>claude --plugin-dir ~/icc</code>.</li>
+    <li>Tapez la commande ci-dessous.</li>
+  </ol>
+  <div class="cmd"><pre><code>/icc:reprendre</code></pre></div>
+  <p>icc résume la situation et vous demande si quelque chose a changé. Vous pouvez l'annoncer directement : <code>/icc:reprendre J'ai reçu une réponse du bailleur</code>.</p>
+</section>
+
+<section id="parcours">
+  <h2>Le parcours d'un projet</h2>
+  <p>icc vous oriente vers la bonne étape. L'ordre change selon votre situation, par exemple si une date limite approche.</p>
+  <ol class="etapes">
+    <li><h3>Décrire le projet</h3><p>Vous obtenez une fiche-projet. Tous les autres documents partent de celle-ci.</p></li>
+    <li><h3>Choisir un statut, si besoin</h3><p>Association, entreprise, coopérative, ou appui d'une structure existante. Beaucoup de financeurs demandent une structure déclarée.</p></li>
+    <li><h3>Trouver les financements</h3><p>Vous obtenez une liste de pistes, avec les raisons de les suivre ou non.</p></li>
+    <li><h3>Chiffrer le projet</h3><p>Vous obtenez un budget et un calendrier de l'argent, mois par mois.</p></li>
+    <li><h3>Rédiger le dossier</h3><p>Note conceptuelle, lettres, CV et portfolio, selon les règles de l'appel à projets.</p></li>
+    <li><h3>Présenter le projet</h3><p>Pitch, dossier de presse, sponsors et financement participatif.</p></li>
+    <li><h3>Réaliser le projet</h3><p>Calendrier, responsabilités, risques, indicateurs et rapports aux financeurs.</p></li>
+  </ol>
+</section>
+
+<section id="commandes">
+  <h2>Les commandes</h2>
+  <p>Vous pouvez aussi écrire votre demande normalement, sans commande. Celles-ci servent à aller directement à une tâche.</p>
+  <div class="tableau">
+    <table>
+      <thead><tr><th scope="col">Vous voulez</th><th scope="col">Tapez</th></tr></thead>
+      <tbody>
+        <tr><td>Commencer un projet</td><td><code>/icc:demarrer</code></td></tr>
+        <tr><td>Continuer un projet</td><td><code>/icc:reprendre</code></td></tr>
+        <tr><td>Décrire votre projet</td><td><code>/icc:fiche-projet</code></td></tr>
+        <tr><td>Savoir qui peut vous financer</td><td><code>/icc:cartographie-bailleurs</code></td></tr>
+        <tr><td>Analyser un appel à projets précis</td><td><code>/icc:matching-appel</code></td></tr>
+        <tr><td>Rédiger une note conceptuelle</td><td><code>/icc:note-conceptuelle</code></td></tr>
+        <tr><td>Rendre un texte plus naturel</td><td><code>/icc:reecriture-humanisee</code></td></tr>
+        <tr><td>Faire votre budget</td><td><code>/icc:budget-cofinancement</code></td></tr>
+        <tr><td>Prévoir l'argent mois par mois</td><td><code>/icc:plan-tresorerie</code></td></tr>
+        <tr><td>Choisir un statut juridique</td><td><code>/icc:statut-juridique</code></td></tr>
+        <tr><td>Protéger vos créations</td><td><code>/icc:propriete-intellectuelle</code></td></tr>
+        <tr><td>Préparer un pitch ou un dossier de presse</td><td><code>/icc:pitch-dossier-presse</code></td></tr>
+        <tr><td>Lancer une collecte en ligne</td><td><code>/icc:crowdfunding</code></td></tr>
+        <tr><td>Planifier la réalisation</td><td><code>/icc:plan-mise-en-oeuvre</code></td></tr>
+        <tr><td>Mesurer vos résultats</td><td><code>/icc:suivi-evaluation</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="fichiers">
+  <h2>Où trouver vos fichiers</h2>
+  <p>Tout est rangé dans le dossier <code>projet/</code>, à l'intérieur du dossier de votre projet. Ces fichiers s'ouvrent avec un éditeur de texte. Ils sont créés au fur et à mesure.</p>
+<pre class="arbre">projet/
+├── ETAT.md            où vous en êtes
+├── fiche-projet.md    la description du projet
+├── financements/      les pistes et les appels analysés
+├── budget/            le budget et le calendrier de l'argent
+├── dossiers/          un dossier par financeur
+├── juridique/         statut, droits et contrats
+├── communication/     pitch et dossier de presse
+└── mise-en-oeuvre/    plan, suivi et rapports</pre>
+  <p>Faites régulièrement une copie du dossier <code>projet/</code> sur une clé USB.</p>
+</section>
+
+<section id="regles">
+  <h2>Les bons réflexes</h2>
+  <ul>
+    <li><strong>Vérifiez tout ce qui porte la mention [À VÉRIFIER].</strong> Montants, dates limites et critères changent. Contrôlez-les sur le site officiel du financeur avant de déposer.</li>
+    <li><strong>Lisez toujours le texte complet de l'appel à projets.</strong> Ses règles passent avant les modèles d'icc.</li>
+    <li><strong>Relisez chaque document à voix haute.</strong> C'est le meilleur moyen de vérifier qu'il vous ressemble et qu'il est exact.</li>
+    <li><strong>Donnez de vrais chiffres.</strong> Si vous ne savez pas, dites-le. Un chiffre prudent et vérifiable vaut mieux qu'un chiffre impressionnant.</li>
+    <li><strong>Vous décidez.</strong> Vous pouvez corriger, refuser ou demander une autre proposition à tout moment.</li>
+    <li><strong>Protégez vos données.</strong> N'écrivez jamais de mot de passe ni de code bancaire. Vos messages passent par internet : réfléchissez avant de partager des informations personnelles sur d'autres personnes.</li>
+    <li><strong>Consultez un professionnel quand icc vous le signale.</strong> C'est souvent le cas pour les statuts d'une société, les contrats importants, les impôts et les comptes certifiés.</li>
+  </ul>
+</section>
+
+<section id="problemes">
+  <h2>En cas de problème</h2>
+  <div class="tableau">
+    <table>
+      <thead><tr><th scope="col">Ce que vous voyez</th><th scope="col">Ce qu'il faut faire</th></tr></thead>
+      <tbody>
+        <tr><td>Le terminal indique que <code>claude</code> est introuvable</td><td>Claude Code n'est pas installé ou le terminal doit être rouvert. Fermez-le, rouvrez-le et réessayez.</td></tr>
+        <tr><td><code>/icc:demarrer</code> n'est pas reconnu</td><td>icc n'est pas chargé. Quittez avec <code>/exit</code>, vérifiez l'emplacement du dossier <code>icc</code> et relancez <code>claude --plugin-dir</code> suivi du bon chemin.</td></tr>
+        <tr><td>icc dit qu'il ne peut pas écrire un fichier</td><td>Acceptez l'autorisation demandée pour <code>projet/</code>, puis redemandez-lui d'enregistrer.</td></tr>
+        <tr><td>Rien ne bouge depuis plusieurs minutes</td><td>Attendez encore un peu. Si la connexion a coupé, relancez et tapez <code>/icc:reprendre</code>.</td></tr>
+        <tr><td><code>/icc:reprendre</code> ne trouve pas votre projet</td><td>Vous n'êtes sans doute pas dans le bon dossier. Quittez, utilisez <code>cd mon-projet</code> et relancez. Si <code>projet/ETAT.md</code> n'existe pas, tapez <code>/icc:demarrer</code>.</td></tr>
+        <tr><td>Une réponse est trop compliquée</td><td>Écrivez : « Explique-moi plus simplement, avec un exemple. »</td></tr>
+        <tr><td>Vous êtes bloquée</td><td>Écrivez à icc ce que vous voulez faire. Si cela ne suffit pas, adressez-vous à l'équipe du Labo Ngousso.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="mots">
+  <h2>Les mots à connaître</h2>
+  <dl>
+    <div><dt>Bailleur</dt><dd>Organisme qui donne ou prête de l'argent pour un projet.</dd></div>
+    <div><dt>Appel à projets</dt><dd>Annonce d'un bailleur qui invite à déposer une demande, avec des règles et une date limite.</dd></div>
+    <div><dt>Note conceptuelle</dt><dd>Document court qui présente votre projet à un bailleur.</dd></div>
+    <div><dt>Cofinancement</dt><dd>Part du budget qui ne vient pas du bailleur : votre apport ou celui d'autres partenaires.</dd></div>
+    <div><dt>Trésorerie</dt><dd>L'argent réellement disponible à un moment donné. Un budget peut être équilibré alors qu'il manque de l'argent un mois précis.</dd></div>
+    <div><dt>Structure ou personne morale</dt><dd>Organisation déclarée, comme une association ou une entreprise, qui existe juridiquement en dehors de ses membres.</dd></div>
+    <div><dt>Portage</dt><dd>Accord par lequel une structure existante porte votre projet quand vous n'avez pas encore la vôtre.</dd></div>
+    <div><dt>Propriété intellectuelle</dt><dd>Les droits sur vos créations : droit d'auteur, marque, dessins et modèles.</dd></div>
+    <div><dt>Pitch</dt><dd>Présentation courte et convaincante de votre projet.</dd></div>
+    <div><dt>Crowdfunding</dt><dd>Collecte d'argent en ligne auprès de nombreuses personnes, aussi appelée financement participatif.</dd></div>
+  </dl>
+</section>
+
+<footer>
+  <p>Ce guide accompagne le plugin icc. Les informations données par icc sont générales : vérifiez-les avant de vous engager.</p>
+</footer>
+</div>
+
+<script>
+document.querySelectorAll('.cmd').forEach(function (bloc) {
+  var code = bloc.querySelector('code');
+  var bouton = document.createElement('button');
+  bouton.type = 'button';
+  bouton.className = 'copy';
+  bouton.textContent = 'Copier';
+  bouton.addEventListener('click', function () {
+    var signaler = function () {
+      bouton.textContent = 'Copié';
+      setTimeout(function () { bouton.textContent = 'Copier'; }, 1800);
+    };
+    var selectionner = function () {
+      var plage = document.createRange();
+      plage.selectNodeContents(code);
+      var selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(plage);
+      bouton.textContent = 'Sélectionné';
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code.textContent).then(signaler).catch(selectionner);
+    } else {
+      selectionner();
+    }
+  });
+  bloc.appendChild(bouton);
+});
+</script>

@@ -20,19 +20,20 @@ Le plugin est un dossier contenant `.claude-plugin/plugin.json`, `agents/`, `com
 `skills/`.
 
 ```bash
-# Option 1 — installation depuis un dossier local
-claude plugin add /chemin/vers/icc
-
-# Option 2 — installation depuis une marketplace qui référence ce plugin
-claude plugin marketplace add <url-ou-chemin-de-la-marketplace>
-claude plugin install icc
+# Depuis le répertoire de travail du promoteur, à chaque nouvelle séance
+claude --plugin-dir /chemin/vers/icc
 ```
 
-Après installation, dans n'importe quel répertoire de travail du promoteur :
+`--plugin-dir` charge le plugin pour la session en cours uniquement. Ensuite, dans la session :
 
 ```
 /icc:demarrer
 ```
+
+Pour vérifier le plugin après une modification : `claude plugin validate /chemin/vers/icc`.
+
+Un guide pour débutantes, destiné aux participantes du Labo Ngousso, se trouve dans
+[docs/guide-labo-ngousso.html](docs/guide-labo-ngousso.html).
 
 Le promoteur travaille dans le répertoire courant ; tous les livrables sont écrits dans un
 sous-dossier `projet/` (créé à la demande).

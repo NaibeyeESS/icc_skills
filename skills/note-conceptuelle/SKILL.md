@@ -1,6 +1,6 @@
 ---
 name: note-conceptuelle
-description: Utiliser quand un promoteur ICC doit rédiger une note conceptuelle, un dossier de candidature, un formulaire d'appel, une lettre de soutien ou de motivation, un CV, un portfolio ou un cadre logique (concept note, « répondre à un appel », « monter le dossier de subvention »). Produit projet/dossiers/<slug>/note-conceptuelle.md au format de l'appel.
+description: Utiliser quand un promoteur ICC doit rédiger une note conceptuelle, un dossier de candidature, un formulaire d'appel, une lettre de soutien ou de motivation, un CV, un portfolio ou un cadre logique (concept note, « répondre à un appel », « monter le dossier de subvention »). Produit la note conceptuelle dans projet/dossiers/, au format de l'appel.
 ---
 
 # /icc:note-conceptuelle — Note conceptuelle et pièces d'accompagnement conformes au bailleur

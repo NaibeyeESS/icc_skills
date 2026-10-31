@@ -1,6 +1,6 @@
 ---
 name: reecriture-humanisee
-description: Utiliser quand un texte de dossier (note conceptuelle, pitch, lettre, bio) sonne générique, artificiel ou « écrit par une machine » et doit être réécrit dans la voix du promoteur (humaniser, rendre naturel, plus vivant, moins robotique, reformuler, « ça ne me ressemble pas »). Produit <fichier>.v2.md sans changer faits ni format du bailleur.
+description: Utiliser quand un texte de dossier (note conceptuelle, pitch, lettre, bio) sonne générique, artificiel ou « écrit par une machine » et doit être réécrit dans la voix du promoteur (humaniser, rendre naturel, plus vivant, moins robotique, reformuler, « ça ne me ressemble pas »). Produit une version .v2.md à côté de l'original, sans changer les faits ni le format du bailleur.
 ---
 
 # /icc:reecriture-humanisee — Réécriture humanisée d'un texte de dossier
